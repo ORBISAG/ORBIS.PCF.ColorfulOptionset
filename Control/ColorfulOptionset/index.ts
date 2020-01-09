@@ -1,9 +1,8 @@
 import {IInputs, IOutputs} from "./generated/ManifestTypes";
-import { IComboBoxOption, IComboBox } from "office-ui-fabric-react";
+import { IDropdownOption, IDropdown } from "office-ui-fabric-react";
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import ColorfulOptionsetControl, { IColorIndexer } from "./ColorfulOptionsetControl";
-import { resultItem } from "office-ui-fabric-react/lib/components/FloatingPicker/PeoplePicker/PeoplePicker.scss";
+import ColorfulOptionsetControl from "./ColorfulOptionsetControl";
 
 
 
@@ -27,7 +26,7 @@ const DEFAULT_OPTIONS : ComponentFramework.PropertyHelper.OptionMetadata[] = [{
 export class ColorfulOptionset implements ComponentFramework.StandardControl<IInputs, IOutputs> {
 
 	private allOptions : ComponentFramework.PropertyHelper.OptionMetadata[];
-	private allColors : IColorIndexer = {};
+	private dropdownOptions : IDropdownOption[];
 	private defaultValue : number | undefined;
 
 	private container: HTMLDivElement;
@@ -55,10 +54,7 @@ export class ColorfulOptionset implements ComponentFramework.StandardControl<IIn
 		if(this.allOptions.length === 3){
 			this.allOptions = DEFAULT_OPTIONS;
 		} 
-		this.allColors = this.allOptions.reduce((result : IColorIndexer, option : ComponentFramework.PropertyHelper.OptionMetadata) => {
-			result[option.Value] = option.Color;			
-			return result;
-		}, {} );		
+		this.dropdownOptions = this.allOptions.map((option : ComponentFramework.PropertyHelper.OptionMetadata ) =>  ({key: option.Value, text : option.Label, data: {color: option.Color}}) )
 		this.defaultValue = context.parameters.myInput.attributes?.DefaultValue;
 
 		this.container = container;
@@ -71,13 +67,12 @@ export class ColorfulOptionset implements ComponentFramework.StandardControl<IIn
 		const currentValue = context.parameters.myInput.raw;
 	
 		let p = {
-			options: this.allOptions,
-			selectedKey: currentValue,
-			allColors : this.allColors,
-			onSelectedChanged: (event: React.FormEvent<IComboBox>, option?:  IComboBoxOption | undefined, index?: number | undefined, value?: string | undefined) => {
+			options: this.dropdownOptions,
+			selectedKey: currentValue, 			
+			onSelectedChanged: (event: React.FormEvent<HTMLDivElement>, option?: IDropdownOption) => {
 				this.currentValue = option == null ? null : <number>option.key;
 				this.notifyOutputChanged();
-			}
+			}			
 		};
 
 		ReactDOM.render(React.createElement(ColorfulOptionsetControl, p), this.container);
