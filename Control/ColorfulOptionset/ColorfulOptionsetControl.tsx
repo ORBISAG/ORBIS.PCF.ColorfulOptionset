@@ -27,8 +27,8 @@ export default class ColorfulOptionsetControl extends React.Component<IColorfulO
     }*/
     private _onRenderOption = (option: ISelectableOption | undefined): JSX.Element => {
         return (
-            <div style={{float:"left"}}>          
-                <Icon style={{color: option?.data?.color || "", marginRight: "8px"}} iconName="CircleShapeSolid" aria-hidden="true" />          
+            <div className="option">          
+                <Icon style={{color: option?.data?.color || "#ffffff"}} iconName="CircleShapeSolid" aria-hidden="true" />          
               <span>{option?.text || ""}</span>
             </div>
           );   
@@ -49,7 +49,8 @@ export default class ColorfulOptionsetControl extends React.Component<IColorfulO
                 selectedKey={this.props.selectedKey}  
                 onRenderTitle = {this._onRenderTitle}            
                 onRenderOption = {this._onRenderOption}          
-                onChange={this.props.onSelectedChanged}                                                             
+                onChange={this.props.onSelectedChanged}  
+                className="ColorfulOptionset"                        
             />
         );
     }   

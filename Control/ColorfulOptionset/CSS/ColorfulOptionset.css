@@ -1,0 +1,17 @@
+.ORBIS\.ColorfulOptionset .option {
+    float:left;
+    display: flex;
+}
+
+.ORBIS\.ColorfulOptionset .option > span
+{
+   white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   min-width: 0;
+}
+
+.ORBIS\.ColorfulOptionset .option i {
+    margin-right: 8px;
+    flex: 1;
+}

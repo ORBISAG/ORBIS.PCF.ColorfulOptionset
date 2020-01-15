@@ -13,13 +13,23 @@ const DEFAULT_OPTIONS : ComponentFramework.PropertyHelper.OptionMetadata[] = [{
 },
 {
 	Value : 2,
-	Label : "Development",
+	Label : "Development, this is a pretty long line",
 	Color : "#00ff00"
 },
 {
 	Value : 3,
-	Label : "Management",
+	Label : "Management, and this is an even longer line",
 	Color : "#0000ff"
+}, 
+{
+	Value : 4,
+	Label : "Option 4",
+	Color : "#00ffee"
+},
+{
+	Value : 5,
+	Label : "Option 5",
+	Color : "#eeccaa"
 }
 ];
 
@@ -49,13 +59,16 @@ export class ColorfulOptionset implements ComponentFramework.StandardControl<IIn
 	 */
 	public init(context: ComponentFramework.Context<IInputs>, notifyOutputChanged: () => void, state: ComponentFramework.Dictionary, container:HTMLDivElement)
 	{		
-		// Add control initialization code
-		this.allOptions = context.parameters.myInput.attributes!.Options;
-		if(this.allOptions.length === 3){
-			this.allOptions = DEFAULT_OPTIONS;
+		
+		//todo: context.Mode.isControlDisabled		
+		let opts =  context.parameters.optionsInput.attributes!.Options;
+		//todo
+		if(opts?.length === 3){
+			opts = DEFAULT_OPTIONS;
 		} 
+		this.allOptions = [{Label: "--Select--", Value: -1, Color: "transparent"}, ...opts];
 		this.dropdownOptions = this.allOptions.map((option : ComponentFramework.PropertyHelper.OptionMetadata ) =>  ({key: option.Value, text : option.Label, data: {color: option.Color}}) )
-		this.defaultValue = context.parameters.myInput.attributes?.DefaultValue;
+		this.defaultValue = context.parameters.optionsInput.attributes?.DefaultValue;
 
 		this.container = container;
 		this.notifyOutputChanged = notifyOutputChanged;
@@ -64,13 +77,13 @@ export class ColorfulOptionset implements ComponentFramework.StandardControl<IIn
 	}
 
 	private renderControl(context: ComponentFramework.Context<IInputs>) {
-		const currentValue = context.parameters.myInput.raw;
+		const currentValue = context.parameters.optionsInput.raw;
 	
 		let p = {
 			options: this.dropdownOptions,
-			selectedKey: currentValue, 			
+			selectedKey: currentValue || -1, 			
 			onSelectedChanged: (event: React.FormEvent<HTMLDivElement>, option?: IDropdownOption) => {
-				this.currentValue = option == null ? null : <number>option.key;
+				this.currentValue = (option == null || option.key===-1) ? null : <number>option.key;
 				this.notifyOutputChanged();
 			}			
 		};
@@ -95,7 +108,7 @@ export class ColorfulOptionset implements ComponentFramework.StandardControl<IIn
 	public getOutputs(): IOutputs
 	{
 		return {
-			myInput: this.currentValue == null ? undefined : this.currentValue
+			optionsInput: this.currentValue == null ? undefined : this.currentValue
 		};
 	}
 
