@@ -38,6 +38,7 @@ export class ColorfulOptionset implements ComponentFramework.StandardControl<IIn
 	private allOptions : ComponentFramework.PropertyHelper.OptionMetadata[];
 	private dropdownOptions : IDropdownOption[];
 	private defaultValue : number | undefined;
+	private isDisabled : boolean;
 
 	private container: HTMLDivElement;
 	private currentValue: number | null;
@@ -60,7 +61,7 @@ export class ColorfulOptionset implements ComponentFramework.StandardControl<IIn
 	public init(context: ComponentFramework.Context<IInputs>, notifyOutputChanged: () => void, state: ComponentFramework.Dictionary, container:HTMLDivElement)
 	{		
 		
-		//todo: context.Mode.isControlDisabled		
+		
 		let opts =  context.parameters.optionsInput.attributes!.Options;
 		//todo
 		if(opts?.length === 3){
@@ -68,8 +69,7 @@ export class ColorfulOptionset implements ComponentFramework.StandardControl<IIn
 		} 
 		this.allOptions = [{Label: "--Select--", Value: -1, Color: "transparent"}, ...opts];
 		this.dropdownOptions = this.allOptions.map((option : ComponentFramework.PropertyHelper.OptionMetadata ) =>  ({key: option.Value, text : option.Label, data: {color: option.Color}}) )
-		this.defaultValue = context.parameters.optionsInput.attributes?.DefaultValue;
-
+	
 		this.container = container;
 		this.notifyOutputChanged = notifyOutputChanged;
 
@@ -85,7 +85,8 @@ export class ColorfulOptionset implements ComponentFramework.StandardControl<IIn
 			onSelectedChanged: (event: React.FormEvent<HTMLDivElement>, option?: IDropdownOption) => {
 				this.currentValue = (option == null || option.key===-1) ? null : <number>option.key;
 				this.notifyOutputChanged();
-			}			
+			}, 
+			isDisabled : this.isDisabled			
 		};
 
 		ReactDOM.render(React.createElement(ColorfulOptionsetControl, p), this.container);
@@ -98,6 +99,9 @@ export class ColorfulOptionset implements ComponentFramework.StandardControl<IIn
 	 */
 	public updateView(context: ComponentFramework.Context<IInputs>): void
 	{
+		this.isDisabled = context.mode.isControlDisabled;
+		this.defaultValue = context.parameters.optionsInput.attributes?.DefaultValue;
+
 		this.renderControl(context);
 	}
 

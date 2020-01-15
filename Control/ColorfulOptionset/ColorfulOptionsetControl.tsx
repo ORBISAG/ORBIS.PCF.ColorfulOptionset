@@ -12,6 +12,7 @@ interface IColorfulOptionsetProperties {
     options: IDropdownOption[];
     selectedKey: number | null;      
     onSelectedChanged: (event: React.FormEvent<HTMLDivElement>, option?: IDropdownOption) => void;
+    isDisabled : boolean;
 }
 
 initializeIcons();
@@ -41,7 +42,8 @@ export default class ColorfulOptionsetControl extends React.Component<IColorfulO
      
   
    
-    render() {       
+    render() {    
+        debugger;   
         return (
             <Dropdown
                // placeHolder="--Select--"
@@ -50,7 +52,8 @@ export default class ColorfulOptionsetControl extends React.Component<IColorfulO
                 onRenderTitle = {this._onRenderTitle}            
                 onRenderOption = {this._onRenderOption}          
                 onChange={this.props.onSelectedChanged}  
-                className="ColorfulOptionset"                        
+                className="ColorfulOptionset" 
+                disabled={this.props.isDisabled}                       
             />
         );
     }   
