@@ -2,7 +2,7 @@ import {IInputs, IOutputs} from "./generated/ManifestTypes";
 import { IDropdownOption, IDropdown } from "office-ui-fabric-react";
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import ColorfulOptionsetControl from "./ColorfulOptionsetControl";
+import {ColorfulOptionsetControl} from "./ColorfulOptionsetControl";
 
 
 
@@ -76,22 +76,21 @@ export class ColorfulOptionset implements ComponentFramework.StandardControl<IIn
 		this.renderControl(context);
 	}
 
-	private renderControl(context: ComponentFramework.Context<IInputs>) {
+	private renderControl(context: ComponentFramework.Context<IInputs>) : void {
 		const currentValue = context.parameters.optionsInput.raw;
-	
-		let p = {
+		let params = {
 			options: this.dropdownOptions,
 			selectedKey: currentValue || -1, 			
-			onSelectedChanged: (event: React.FormEvent<HTMLDivElement>, option?: IDropdownOption) => {
-				this.currentValue = (option == null || option.key===-1) ? null : <number>option.key;
+			onChange: (newValue: number |null) => {
+				this.currentValue = newValue;
 				this.notifyOutputChanged();
 			}, 
 			isDisabled : this.isDisabled			
 		};
-
-		ReactDOM.render(React.createElement(ColorfulOptionsetControl, p), this.container);
+		//todo: defaultValue
+		ReactDOM.render(React.createElement(ColorfulOptionsetControl, params ) , this.container);
 	}
-
+	
 
 	/**
 	 * Called when any value in the property bag has changed. This includes field values, data-sets, global values such as container height and width, offline status, control metadata values such as label, visible, etc.

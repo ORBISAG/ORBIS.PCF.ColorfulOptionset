@@ -1,3 +1,31 @@
+.ORBIS\.ColorfulOptionset {
+    outline: none;
+}
+
+
+/*
+.ORBIS\.ColorfulOptionset .main {
+    border-color: transparent;
+
+}
+
+
+.ORBIS\.ColorfulOptionset .main span {
+    border-color: transparent;
+}
+
+
+.ORBIS\.ColorfulOptionset .main .caret_down {
+    color: transparent;
+}
+
+.ORBIS\.ColorfulOptionset .main:hover .caret_down{
+    color: black;
+}
+.ORBIS\.ColorfulOptionset .main:active .caret_down {
+    color: black;
+}*/
+
 .ORBIS\.ColorfulOptionset .option {
     float:left;
     display: flex;
@@ -11,7 +39,48 @@
    min-width: 0;
 }
 
-.ORBIS\.ColorfulOptionset .option i {
+.ORBIS\.ColorfulOptionset .colorIcon {
     margin-right: 8px;
     flex: 1;
+}
+
+/*hover effect*/
+
+.ORBIS\.ColorfulOptionset .ComboBoxMain{    
+    background: transparent;  
+    color: #000000; 
+    font-family: 'SegoeUI', 'Segoe UI'; 
+    font-size: 1.0rem;         
+}
+
+.ORBIS\.ColorfulOptionset .ComboBox{
+   border-color: transparent!important;
+    border-style: none; 
+   /* border: 1px solid #ffffff;      */    
+    font-weight: 600; 
+}
+
+
+.ORBIS\.ColorfulOptionset .ComboBox i{  
+    color:transparent;
+}
+
+
+
+.ORBIS\.ColorfulOptionset .ComboBoxFocused{  
+    border: 1px solid #a9a9a9;  
+    font-weight:400;    
+}
+
+.ORBIS\.ColorfulOptionset .ComboBoxFocused i {  
+    color: #000000; 
+}
+
+.ORBIS\.ColorfulOptionset .ComboBoxClicked{  
+    border: 1px solid #a9a9a9; 
+    font-weight:400;      
+}
+
+.ORBIS\.ColorfulOptionset .ComboBoxClicked i {  
+    color: #000000; 
 }
