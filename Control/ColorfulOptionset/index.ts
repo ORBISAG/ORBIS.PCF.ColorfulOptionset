@@ -80,7 +80,7 @@ export class ColorfulOptionset implements ComponentFramework.StandardControl<IIn
 		const currentValue = context.parameters.optionsInput.raw;
 		let params = {
 			options: this.dropdownOptions,
-			selectedKey: currentValue || -1, 			
+			selectedKey: currentValue, 			
 			onChange: (newValue: number |null) => {
 				this.currentValue = newValue;
 				this.notifyOutputChanged();

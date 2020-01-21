@@ -1,8 +1,10 @@
 import * as React from 'react';
+import {FontWeights} from "office-ui-fabric-react/lib/index";
 import {Dropdown, IDropdown, IDropdownOption,  IDropdownProps} from 'office-ui-fabric-react/lib/Dropdown';
 import {initializeIcons} from "office-ui-fabric-react/lib/Icons"
 import { Icon} from "office-ui-fabric-react/lib/Icon";
 import {ISelectableOption} from "office-ui-fabric-react/lib/SelectableOption";
+
 
 
 /*
@@ -39,19 +41,27 @@ function defaultGuard<S>(state: S, a: never) {
   return state; 
 }
 
-const classNameReducer = (
+const reducer = (
   s: State,
   a: Action<"CLICK" | "ENTER" | "LEAVE">
 ) => {
   switch (a.type) {
     case "CLICK":
-        return { className : (s.className==="ComboBoxFocused") ? "ComboBoxClicked" : "ComboBoxFocused"};      
+        return { 
+            className : (s.className==="ComboBoxFocused") ? "ComboBoxClicked" : "ComboBoxFocused", 
+            hasFocus : true
+            };      
     case "ENTER":
-      return { className : "ComboBoxFocused"}
+      return { 
+        className : "ComboBoxFocused", 
+        hasFocus : true
+    }
     case "LEAVE":
-      return { className : "ComboBox"}
+      return { 
+          className : "ComboBox",
+        hasFocus: false}
     default:
-      return {className : "ComboBox"};
+      return {className : "ComboBox", hasFocus : false};
   }
 };
 
@@ -66,7 +76,7 @@ interface IColorfulOptionsetProperties {
 //export default class ColorfulOptionsetControl extends React.Component<IColorfulOptionsetProperties, {}> {            
 export const ColorfulOptionsetControl = ({options, selectedKey, onChange, isDisabled}:IColorfulOptionsetProperties): JSX.Element =>{
     const [value, setValue] = React.useState(selectedKey);
-    const [className, dispatch] = React.useReducer(classNameReducer, {className: "ComboBox"});
+    const [className, dispatch] = React.useReducer(reducer, {className: "ComboBox", hasFocus: false});
 
     React.useEffect(() => {     
         onChange(value);      
@@ -84,23 +94,54 @@ export const ColorfulOptionsetControl = ({options, selectedKey, onChange, isDisa
     const _onRenderCaretDown = (props : IDropdownProps | undefined) : JSX.Element => {
           return <Icon iconName="ChevronDown" className={className.className}/>
       }  */
+
+    
+      const styles = {                      
+        title: [{
+            borderColor: "transparent",       
+            fontWeight: FontWeights.bold,        
+            outlineColor: "none",     
+            color: "red",        
+            selectors: {
+                ':hover': {
+                  borderColor: "black",
+                  outline: "none",
+                  fontWeight: FontWeights.regular                 
+                }, 
+                ':focus': {
+                  outline: "none",
+                }                
+              }
+        }], 
+        caretDown : [{
+            color: "transparent",                       
+            selectors: {
+                ':hover': {
+                  color: "black"
+                }                 
+            }}]
+        
+      };
+      
      
     return (
         <Dropdown
             placeHolder="---"
             options={options}
-            selectedKey={value}  
+            selectedKey={value || -1}  
             onRenderTitle = {_onRenderTitle}            
             onRenderOption = {_onRenderOption}          
             onChange={_onSelectedChanged}  
            // onRenderCaretDown={_onRenderCaretDown}
             //className="main" 
             disabled={isDisabled} 
-            className={`ComboBoxMain ${className.className}`} 
+            className={`ComboBoxMain`} 
+           /* className={`ComboBoxMain ${className.className}`} 
             onClick={() => dispatch({type: "CLICK"})} 
             onMouseEnter={() => dispatch({type: "ENTER"})} 
-            onMouseLeave={() => dispatch({type:"LEAVE"})}                  
-            
+            onMouseLeave={() => dispatch({type:"LEAVE"})}                              */
+           styles={styles}
+           
         />
     );
 
