@@ -34,41 +34,6 @@ const _onRenderTitle = (options: IDropdownOption[] | undefined): JSX.Element => 
         
   };
 
-//class reducer
-type State = { className: string };
-
-type Action<K, V = void> = V extends void ? 
-  { type: K } : 
-  { type: K } & V;
-
-function defaultGuard<S>(state: S, a: never) { 
-  return state; 
-}
-
-const reducer = (
-  s: State,
-  a: Action<"CLICK" | "ENTER" | "LEAVE">
-) => {
-  switch (a.type) {
-    case "CLICK":
-        return { 
-            className : (s.className==="ComboBoxFocused") ? "ComboBoxClicked" : "ComboBoxFocused", 
-            hasFocus : true
-            };      
-    case "ENTER":
-      return { 
-        className : "ComboBoxFocused", 
-        hasFocus : true
-    }
-    case "LEAVE":
-      return { 
-          className : "ComboBox",
-        hasFocus: false}
-    default:
-      return {className : "ComboBox", hasFocus : false};
-  }
-};
-
 
 interface IColorfulOptionsetProperties {
     options: IDropdownOption[];
@@ -79,8 +44,7 @@ interface IColorfulOptionsetProperties {
 
 //export default class ColorfulOptionsetControl extends React.Component<IColorfulOptionsetProperties, {}> {            
 export const ColorfulOptionsetControl = ({options, selectedKey, onChange, isDisabled}:IColorfulOptionsetProperties): JSX.Element =>{
-    const [value, setValue] = React.useState(selectedKey);
-   // const [className, dispatch] = React.useReducer(reducer, {className: "ComboBox", hasFocus: false});
+    const [value, setValue] = React.useState(selectedKey);   
 
     React.useEffect(() => {     
         onChange(value);      
@@ -90,46 +54,7 @@ export const ColorfulOptionsetControl = ({options, selectedKey, onChange, isDisa
         const newVal  = (option == null || option.key===-1) ? null : option.key as number;
         setValue(newVal);            
     }
-
    
-  
-   
-     /*
-    const _onRenderCaretDown = (props : IDropdownProps | undefined) : JSX.Element => {
-          return <Icon iconName="ChevronDown" className="myCaretDown"/>
-      }  
-*/
-    
-     /* const styles = {                      
-        title: [{
-            borderColor: "transparent",       
-            fontWeight: FontWeights.bold,    
-            appearance: "none",  
-            "-webkit-appearance": "none",
-            "-moz-appearance": "none",
-            "-ms-appearance": "none",
-            "-o-appearance": "none",
-            outline: "none",               
-            selectors: {
-                ':hover': {
-                  borderColor: "black",
-                  outline: "none",
-                  fontWeight: FontWeights.regular                 
-                }, 
-                ':focus': {
-                  outline: "none",
-                }                
-              }
-        }], 
-        caretDown : [{
-            color: "transparent",                       
-            selectors: {
-                ':hover': {
-                  color: "black"
-                }                 
-            }}]
-        
-      };*/
       
       const styles: Partial<IDropdownStyles> = {
         title: [{
@@ -165,9 +90,7 @@ export const ColorfulOptionsetControl = ({options, selectedKey, onChange, isDisa
           neutralPrimary: '#323130',
           neutralDark: '#201f1e',
           black: '#000000',
-          white: '#ffffff',
-         
-          
+          white: '#ffffff'                  
         }});
      
     return (
