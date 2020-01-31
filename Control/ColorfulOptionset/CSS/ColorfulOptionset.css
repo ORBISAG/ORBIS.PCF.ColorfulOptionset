@@ -1,27 +1,14 @@
-.ORBIS\.ColorfulOptionset {
+/*.ORBIS\.ColorfulOptionset {
     outline: none;
 }
-
-.ORBIS\.ColorfulOptionset :focus {
-    outline: none;
-}
-
+*/
 /*
-.ORBIS\.ColorfulOptionset .ComboBoxMain  div {
+.ORBIS\.ColorfulOptionset [role="option"]{    
     border-color: transparent;
-}
-
-.ORBIS\.ColorfulOptionset .ComboBox >div > span {
-    border-color: transparent;
-}
-
-.ORBIS\.ColorfulOptionset .ComboBox >div > span > i {
-    color: transparent;
 }
 */
 
-
-
+/*
 .ORBIS\.ColorfulOptionset .option {
     float:left;
     display: flex;
@@ -38,30 +25,101 @@
 .ORBIS\.ColorfulOptionset .colorIcon {
     margin-right: 8px;
     flex: 1;
-}
+}*/
 
-
-
-.ORBIS\.ColorfulOptionset .ComboBoxMain{    
-    background: transparent;  
-    color: #000000; 
-    font-family: 'SegoeUI', 'Segoe UI'; 
-    font-size: 1.0rem;         
-}
 
 .ORBIS\.ColorfulOptionset .ComboBox{
-   border-color: transparent!important;
-    border-style: none; 
-    border: 1px solid #ffffff;          
-    font-weight: 600; 
+    background: transparent;        
+    box-sizing: border-box; 
+    color: #000000; 
+    font-family: 'SegoeUI', 'Segoe UI'; 
+  /*  font-size: 1.0rem;  */   
+    height: 33px;     
+    width: 100%; 
+    /*padding-left: 0.5em; 
+    padding-right: 0.5em;   */
+    -webkit-appearance: none; 
+    -moz-appearance: none; 
+    -ms-appearance: none; 
+    -o-appearance: none; 
+    appearance: none;   
+    border: 1px solid transparent;
+    
 }
 
 
+
+
+.ORBIS\.ColorfulOptionset .ComboBox:focus{
+    border: 1px solid #a9a9a9;  
+}
+
+.ORBIS\.ColorfulOptionset .ComboBox div[aria-expanded="true"]{
+    border-color: #a9a9a9; 
+    outline-color: #a9a9a9;
+}
+
+
+.ORBIS\.ColorfulOptionset .ComboBox .option{
+    font-weight:bold;       
+    text-align: left;
+}
+.ORBIS\.ColorfulOptionset .ComboBox:focus .option{
+    font-weight:  400;   
+}
+.ORBIS\.ColorfulOptionset .ComboBox .option:focus{
+    font-weight:  400;   
+}
+.ORBIS\.ColorfulOptionset .ComboBox div[aria-expanded="true"] .option{
+    font-weight:400; 
+}
+
+.item{
+    display: inline-flex;
+    font-weight:400;   
+}
+
+.ORBIS\.ColorfulOptionset .ComboBox i{  
+    color:transparent;  
+}
+.ORBIS\.ColorfulOptionset .ComboBox:hover i{  
+    color:#a9a9a9;
+}
+.ORBIS\.ColorfulOptionset .ComboBox div[aria-expanded="true"] i{
+    color: #a9a9a9; 
+}
+
+
+/*
 .ORBIS\.ColorfulOptionset .ComboBox i{  
     color:transparent;
 }
+*/
 
+/*
+   
 
+.ORBIS\.ColorfulOptionset .ComboBoxMain  div {
+    border-color: transparent;
+}
+
+.ORBIS\.ColorfulOptionset .ComboBox >div > span {
+    border-color: transparent;
+}
+
+.ORBIS\.ColorfulOptionset .ComboBox >div > span > i {
+    color: transparent;
+}
+
+.ORBIS\.ColorfulOptionset .ComboBox div[aria-expanded="true"]{
+    color: #000000; 
+}
+
+.ORBIS\.ColorfulOptionset .ComboBox div[aria-expanded="true"] i{
+    color: #000000; 
+}
+*/
+/*
 
 .ORBIS\.ColorfulOptionset .ComboBoxFocused{  
     border: 1px solid #a9a9a9;  
@@ -80,3 +138,4 @@
 .ORBIS\.ColorfulOptionset .ComboBoxClicked i {  
     color: #000000; 
 }
+*/
