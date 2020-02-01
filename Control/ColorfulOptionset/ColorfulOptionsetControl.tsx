@@ -27,18 +27,17 @@ const styles: Partial<IDropdownStyles> = {
 };
 */
 
-
 const myTheme = createTheme({
   palette: {
-    themePrimary: '#ffffff',
-    themeLighterAlt: '#767676',
-    themeLighter: '#a6a6a6',
-    themeLight: '#c8c8c8',
-    themeTertiary: '#d0d0d0',
-    themeSecondary: '#dadada',
-    themeDarkAlt: '#eaeaea',
-    themeDark: '#f4f4f4',
-    themeDarker: '#f8f8f8',
+    themePrimary: '#a9a9a9',
+    themeLighterAlt: '#fcfcfc',
+    themeLighter: '#f1f1f1',
+    themeLight: '#e5e5e5',
+    themeTertiary: '#cbcbcb',
+    themeSecondary: '#b3b3b3',
+    themeDarkAlt: '#979797',
+    themeDark: '#808080',
+    themeDarker: '#5e5e5e',
     neutralLighterAlt: '#faf9f8',
     neutralLighter: '#f3f2f1',
     neutralLight: '#edebe9',
@@ -129,75 +128,20 @@ export const ColorfulOptionsetControl = ({options, selectedKey, onChange, isDisa
           selectors:{
             ":focus:after": {
               outline: "none",
-              border: "1px solid black",
+              //  border: "1px solid black",
+              border: props.disabled===true ? "1px solid transparent" : `1px solid ${colorFocus}`,
               outlineColor: "transparent",
               boxShadow: "none"
-            }/*,
-            ":hover": {
-              border: "1px solid transparent",
-              outline : "none",
-              outlineColor: "transparent",
-              boxShadow: "none"
-            },
-            ':after':{
-              outline: "none",
-              border: "1px solid transparent",
-              outlineColor: "transparent",
-              outlineOffset: "0",
-              boxShadow: "none"
-            } */
-          }
-
-        }]/*,
-        dropdownItemSelected: [{
-          outline: "none",
-          border: "1px solid transparent",
-          outlineColor: "transparent",
-          selectors:{
-            ":focus": {
-              outline: "none",
-              border: "1px solid transparent",
-              outlineColor: "transparent"
-            },
-            ":hover": {
-              border: "1px solid transparent",
-              outline : "none",
-              outlineColor: "transparent"
-            },
-            ":active": {
-              border: "1px solid transparent",
-              outline : "none",
-              outlineColor: "transparent"
             }
           }
 
-        }],            
-        root: [{
-          outline: "none",
-          border: "1px solid transparent",
-          outlineColor: "transparent",
-          selectors:{
-            ":focus": {
-              outline: "none",
-              border: "1px solid transparent",
-              outlineColor: "transparent"
-            },
-            ":hover": {
-              border: "1px solid transparent",
-              outline : "none",
-              outlineColor: "transparent"
-            }, 
-            ":active": {
-              border: "1px solid transparent",
-              outline : "none",
-              outlineColor: "transparent"
-            }
-
-          }
-
-        }]*/,   
+        }],   
         caretDown :[{
           color: props.isOpen===true? colorFocus : "transparent"        
+        }],
+        caretDownWrapper: [{
+          borderLeft: props.isOpen===true ? `1px solid ${colorFocus}` : "none",         
+          paddingLeft: "7px"
         }]
       });
       
@@ -214,7 +158,7 @@ export const ColorfulOptionsetControl = ({options, selectedKey, onChange, isDisa
             disabled={isDisabled} 
             className="ComboBox"                        
              styles = {myStyles}
-            //theme = {myTheme}           
+            theme = {myTheme}           
         />
     );
 
