@@ -17,57 +17,52 @@ import {dropdownStyles, myTheme} from "./DropdownStyles";
 initializeIcons();
 
 
-  
-
-
-
 interface IColorfulOptionsetProperties {
     options: IDropdownOption[];
     selectedKey: number | null;          
     onChange: (value: number|null) => void
     isDisabled : boolean;
+    defaultValue : number | undefined;
 }  
 
+
+
+const _renderOption =(option: ISelectableOption | undefined, className ?:string) : JSX.Element => {
+  return (
+    <div className={className}>
+        <Icon className="colorIcon" style={{color: option?.data?.color || "#ffffff", marginRight: "8px"}} iconName="CircleShapeSolid" aria-hidden="true" />          
+      <span>{option?.text || ""}</span>
+    </div>
+  );  
+}
+
+const _onRenderOption = (option: ISelectableOption | undefined): JSX.Element => {
+    return _renderOption(option, "ORBIS_ColorfulOptionset_item")
+  };
+
+const _onRenderTitle = (options: IDropdownOption[] | undefined): JSX.Element => {
+    const option = (options || [])[0];
+    return _renderOption(option, "option");
+        
+  };
+
 //export default class ColorfulOptionsetControl extends React.Component<IColorfulOptionsetProperties, {}> {            
-export const ColorfulOptionsetControl = ({options, selectedKey, onChange, isDisabled}:IColorfulOptionsetProperties): JSX.Element =>{
-  console.log(selectedKey);
-            
-    const _onSelectedChanged = (option?: IDropdownOption) => {       
-      const val = (option?.key == null || option?.key===-1) ? null : option?.key as number;
-      onChange(val);      
-    }
+export const ColorfulOptionsetControl = ({options, selectedKey, onChange, isDisabled, defaultValue}:IColorfulOptionsetProperties): JSX.Element =>{
+  const _onSelectedChanged = (event: any, option?: IDropdownOption) => {       
+    const val = (option?.key == null || option?.key===-1) ? null : option?.key as number;   
+    onChange(val);           
+  }
 
-    const _renderOption =(option: ISelectableOption | undefined, className ?:string) : JSX.Element => {
-      return (
-        <div className={className}>
-            <Icon className="colorIcon" style={{color: option?.data?.color || "#ffffff", marginRight: "8px"}} iconName="CircleShapeSolid" aria-hidden="true" />          
-          <span>{option?.text || ""}</span>
-        </div>
-      );  
-    }
-    
-    const _onRenderOption = (option: ISelectableOption | undefined): JSX.Element => {
-        return _renderOption(option, "item")
-      };
-    
-    const _onRenderTitle = (options: IDropdownOption[] | undefined): JSX.Element => {
-        const option = (options || [])[0];
-        return _renderOption(option, "option");
-            
-      };
-
-     
-      
      
     return (
         <Dropdown        
             placeHolder="---"
             options={options}
-            //defaultValue={value || -1}
-            selectedKey={selectedKey || -1}  
+            defaultValue={defaultValue || -1}
+            selectedKey={selectedKey}  
             onRenderTitle = {_onRenderTitle}            
             onRenderOption = {_onRenderOption}            
-            onChanged={_onSelectedChanged}                         
+            onChange={_onSelectedChanged}                         
             disabled={isDisabled} 
             className="ComboBox"                        
              styles = {dropdownStyles}

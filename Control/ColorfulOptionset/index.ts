@@ -1,5 +1,5 @@
 import {IInputs, IOutputs} from "./generated/ManifestTypes";
-import { IDropdownOption } from "office-ui-fabric-react";
+import { IDropdownOption } from "office-ui-fabric-react/lib/Dropdown";
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {ColorfulOptionsetControl} from "./ColorfulOptionsetControl";
@@ -64,12 +64,13 @@ export class ColorfulOptionset implements ComponentFramework.StandardControl<IIn
 		
 		let opts =  context.parameters.optionsInput.attributes!.Options;
 		//todo
-		if(opts?.length === 3){
+		/*if(opts?.length === 3){
 			opts = DEFAULT_OPTIONS;
-		} 
+		} */
 		this.allOptions = [{Label: "--Select--", Value: -1, Color: "transparent"}, ...opts];
 		this.dropdownOptions = this.allOptions.map((option : ComponentFramework.PropertyHelper.OptionMetadata ) =>  ({key: option.Value, text : option.Label, data: {color: option.Color}}) )
-	
+		this.defaultValue = context.parameters.optionsInput.attributes?.DefaultValue;
+
 		this.container = container;
 		this.notifyOutputChanged = notifyOutputChanged;
 
@@ -77,18 +78,22 @@ export class ColorfulOptionset implements ComponentFramework.StandardControl<IIn
 	}
 
 	private renderControl(context: ComponentFramework.Context<IInputs>) : void {
-		const value = context.parameters.optionsInput.raw;
+
+		
+		this.isDisabled = context.mode.isControlDisabled;
+		this.currentValue = context.parameters.optionsInput.raw;
 		let params = {
 			options: this.dropdownOptions,
-			selectedKey: value, 			
+			selectedKey: this.currentValue, 			
 			onChange: (newValue: number |null) => {
 				this.currentValue = newValue;
 				this.notifyOutputChanged();
 			}, 
-			isDisabled : this.isDisabled			
-		};
-		//todo: defaultValue
+			isDisabled : this.isDisabled, 
+			defaultValue : this.defaultValue		
+		};			
 		ReactDOM.render(React.createElement(ColorfulOptionsetControl, params ) , this.container);
+	
 	}
 	
 
@@ -98,8 +103,7 @@ export class ColorfulOptionset implements ComponentFramework.StandardControl<IIn
 	 */
 	public updateView(context: ComponentFramework.Context<IInputs>): void
 	{
-		this.isDisabled = context.mode.isControlDisabled;
-		this.defaultValue = context.parameters.optionsInput.attributes?.DefaultValue;
+		
 
 		this.renderControl(context);
 	}

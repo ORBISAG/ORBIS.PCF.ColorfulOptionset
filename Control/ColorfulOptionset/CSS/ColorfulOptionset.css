@@ -14,6 +14,12 @@
 
 .ORBIS\.ColorfulOptionset .ComboBox .option{          
     text-align: left;
-    line-height: 30px;
+    line-height: 30px;    
+}
+
+.ORBIS_ColorfulOptionset_item{    
+    display: inline-flex; 
+    height:33px;
+    line-height:15px;   
 }
 

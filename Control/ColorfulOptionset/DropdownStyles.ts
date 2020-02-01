@@ -79,5 +79,5 @@ export const dropdownStyles = (props: IDropdownStyleProps):Partial<IDropdownStyl
       caretDownWrapper: [{
         borderLeft: props.isOpen===true ? `1px solid ${colorFocus}` : "none",         
         paddingLeft: "7px"
-      }]
+      }]          
     });    
