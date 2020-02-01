@@ -1,9 +1,10 @@
 import * as React from 'react';
 import {FontWeights, ITheme, createTheme, disableBodyScroll} from "office-ui-fabric-react/lib/index";
-import {Dropdown, IDropdown, IDropdownOption,  IDropdownProps, IDropdownStyles} from 'office-ui-fabric-react/lib/Dropdown';
+import {Dropdown, IDropdown, IDropdownOption,  IDropdownProps, IDropdownStyles, IDropdownStyleProps} from 'office-ui-fabric-react/lib/Dropdown';
 import {initializeIcons} from "office-ui-fabric-react/lib/Icons"
 import { Icon} from "office-ui-fabric-react/lib/Icon";
 import {ISelectableOption} from "office-ui-fabric-react/lib/SelectableOption";
+import { IComponentStyles } from 'office-ui-fabric-react/lib/Foundation';
 
 
 
@@ -14,6 +15,7 @@ import {ISelectableOption} from "office-ui-fabric-react/lib/SelectableOption";
   }*/
 
 initializeIcons();
+/*
 const styles: Partial<IDropdownStyles> = {
   title: [{
     borderColor: "transparent",                
@@ -23,9 +25,10 @@ const styles: Partial<IDropdownStyles> = {
     color: "transparent"
   }] 
 };
+*/
 
 const myTheme = createTheme({
-  disableGlobalClassNames: true,
+ // disableGlobalClassNames: true,
   palette: {
     themePrimary: '#a9a9a9',
     themeLighterAlt: '#fcfcfc',
@@ -85,8 +88,33 @@ export const ColorfulOptionsetControl = ({options, selectedKey, onChange, isDisa
         return _renderOption(option, "option");
             
       };
+
+      const colorFocus = "#a9a9a9";
    
-      
+      const myStyles = (props: IDropdownStyleProps):Partial<IDropdownStyles> => ({        
+        title: [{
+          fontWeight: props.isOpen===true ? "400" : "bold",
+          borderColor: props.isOpen===true ? colorFocus : "transparent",
+          backgroundColor : props.disabled === true ? "lightgray" : "transparent",
+          outline: "none",
+          selectors: {
+            ':focus:hover': {
+              borderColor: "blue"
+            }
+          }
+        }],               
+        caretDown :[{
+          color: props.isOpen===true? colorFocus : "transparent",
+          selectors: {
+            ':focus:hover': {
+              borderColor: "blue"
+            }
+          }
+        }],
+        caretDownWrapper: [{
+          borderLeftColor: props.isOpen===true? colorFocus : "transparent"
+        }]
+      });
       
      
     return (
@@ -100,7 +128,7 @@ export const ColorfulOptionsetControl = ({options, selectedKey, onChange, isDisa
             onChanged={_onSelectedChanged}                         
             disabled={isDisabled} 
             className="ComboBox"                        
-            styles={styles} 
+             styles = {myStyles}
             theme = {myTheme}           
         />
     );
