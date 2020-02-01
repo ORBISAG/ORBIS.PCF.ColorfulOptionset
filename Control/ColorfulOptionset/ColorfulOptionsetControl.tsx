@@ -27,32 +27,35 @@ const styles: Partial<IDropdownStyles> = {
 };
 */
 
+
 const myTheme = createTheme({
- // disableGlobalClassNames: true,
   palette: {
-    themePrimary: '#a9a9a9',
-    themeLighterAlt: '#fcfcfc',
-    themeLighter: '#f1f1f1',
-    themeLight: '#e5e5e5',
-    themeTertiary: '#cbcbcb',
-    themeSecondary: '#b3b3b3',
-    themeDarkAlt: '#979797',
-    themeDark: '#808080',
-    themeDarker: '#5e5e5e',
+    themePrimary: '#ffffff',
+    themeLighterAlt: '#767676',
+    themeLighter: '#a6a6a6',
+    themeLight: '#c8c8c8',
+    themeTertiary: '#d0d0d0',
+    themeSecondary: '#dadada',
+    themeDarkAlt: '#eaeaea',
+    themeDark: '#f4f4f4',
+    themeDarker: '#f8f8f8',
     neutralLighterAlt: '#faf9f8',
     neutralLighter: '#f3f2f1',
     neutralLight: '#edebe9',
     neutralQuaternaryAlt: '#e1dfdd',
     neutralQuaternary: '#d0d0d0',
     neutralTertiaryAlt: '#c8c6c4',
-    neutralTertiary: '#a19f9d',
-    neutralSecondary:  '#605e5c',
-    neutralPrimaryAlt: '#3b3a39',
-    neutralPrimary: '#323130',
-    neutralDark: '#201f1e',
-    black: '#000000',
-    white: '#ffffff'                  
+    neutralTertiary: '#595959',
+    neutralSecondary: '#373737',
+    neutralPrimaryAlt: '#2f2f2f',
+    neutralPrimary: '#000000',
+    neutralDark: '#151515',
+    black: '#0b0b0b',
+    white: '#ffffff',
   }});
+  
+
+
 
 interface IColorfulOptionsetProperties {
     options: IDropdownOption[];
@@ -91,28 +94,110 @@ export const ColorfulOptionsetControl = ({options, selectedKey, onChange, isDisa
 
       const colorFocus = "#a9a9a9";
    
-      const myStyles = (props: IDropdownStyleProps):Partial<IDropdownStyles> => ({        
+      const myStyles = (props: IDropdownStyleProps):Partial<IDropdownStyles> => ({    
         title: [{
-          fontWeight: props.isOpen===true ? "400" : "bold",
-          borderColor: props.isOpen===true ? colorFocus : "transparent",
-          backgroundColor : props.disabled === true ? "lightgray" : "transparent",
+          color: "black",
+          display: "block",
+          fontWeight: props.isOpen===true ? "400" : "600",
+          fontStretch: "normal",
+          borderWidth: "1px",
+          borderStyle: "solid",
+          borderColor: props.isOpen===true ? "black" : "transparent",         
+          backgroundColor : "transparent",             
+          outline: "none",     
+          outlineColor: "transparent",
+          outlineOffset: "0",
+          boxSizing: "border-box",             
+          height: "33px",
+          width: "100%",                             
+          selectors: {
+            ':hover': {
+              borderColor: "black",
+              borderWidth:"1px",
+              fontWeight : props.disabled === true ? "600" : "400", 
+              backgroundColor : props.disabled === true ? "#E2E2E2" : "transparent",
+              boxShadow: "none"
+            }                
+          }
+        }],   
+        dropdown: [{
           outline: "none",
-          selectors: {
-            ':focus:hover': {
-              borderColor: "blue"
+          border: "1px solid transparent",
+          outlineColor: "transparent",
+          outlineOffset: "0",
+          boxShadow: "none",
+          selectors:{
+            ":focus:after": {
+              outline: "none",
+              border: "1px solid black",
+              outlineColor: "transparent",
+              boxShadow: "none"
+            }/*,
+            ":hover": {
+              border: "1px solid transparent",
+              outline : "none",
+              outlineColor: "transparent",
+              boxShadow: "none"
+            },
+            ':after':{
+              outline: "none",
+              border: "1px solid transparent",
+              outlineColor: "transparent",
+              outlineOffset: "0",
+              boxShadow: "none"
+            } */
+          }
+
+        }]/*,
+        dropdownItemSelected: [{
+          outline: "none",
+          border: "1px solid transparent",
+          outlineColor: "transparent",
+          selectors:{
+            ":focus": {
+              outline: "none",
+              border: "1px solid transparent",
+              outlineColor: "transparent"
+            },
+            ":hover": {
+              border: "1px solid transparent",
+              outline : "none",
+              outlineColor: "transparent"
+            },
+            ":active": {
+              border: "1px solid transparent",
+              outline : "none",
+              outlineColor: "transparent"
             }
           }
-        }],               
+
+        }],            
+        root: [{
+          outline: "none",
+          border: "1px solid transparent",
+          outlineColor: "transparent",
+          selectors:{
+            ":focus": {
+              outline: "none",
+              border: "1px solid transparent",
+              outlineColor: "transparent"
+            },
+            ":hover": {
+              border: "1px solid transparent",
+              outline : "none",
+              outlineColor: "transparent"
+            }, 
+            ":active": {
+              border: "1px solid transparent",
+              outline : "none",
+              outlineColor: "transparent"
+            }
+
+          }
+
+        }]*/,   
         caretDown :[{
-          color: props.isOpen===true? colorFocus : "transparent",
-          selectors: {
-            ':focus:hover': {
-              borderColor: "blue"
-            }
-          }
-        }],
-        caretDownWrapper: [{
-          borderLeftColor: props.isOpen===true? colorFocus : "transparent"
+          color: props.isOpen===true? colorFocus : "transparent"        
         }]
       });
       
@@ -129,7 +214,7 @@ export const ColorfulOptionsetControl = ({options, selectedKey, onChange, isDisa
             disabled={isDisabled} 
             className="ComboBox"                        
              styles = {myStyles}
-            theme = {myTheme}           
+            //theme = {myTheme}           
         />
     );
 

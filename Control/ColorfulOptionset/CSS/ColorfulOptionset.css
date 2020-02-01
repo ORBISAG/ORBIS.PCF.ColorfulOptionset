@@ -27,23 +27,23 @@
     flex: 1;
 }*/
 
-.ORBIS\.ColorfulOptionset .ComboBox{
-    background: transparent;        
-    box-sizing: border-box; 
-    color: #000000; 
-    font-family: 'SegoeUI', 'Segoe UI';    
-    height: 33px;     
-    width: 100%; 
+
+.ORBIS\.ColorfulOptionset .ComboBox{  
     -webkit-appearance: none; 
     -moz-appearance: none; 
     -ms-appearance: none; 
     -o-appearance: none; 
     appearance: none;   
     border: 1px solid transparent;    
+    outline-color: transparent; 
+    outline-width: 0;
+    outline-style: none;   
+    box-shadow: none;
 }
 
 .ORBIS\.ColorfulOptionset .ComboBox .option{          
     text-align: left;
+    line-height: 30px;
 }
 
 /*
