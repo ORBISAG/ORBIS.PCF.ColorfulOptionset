@@ -1,82 +1,24 @@
-.ORBIS\.ColorfulOptionset {
-    outline: none;
+
+.ORBIS\.ColorfulOptionset .ComboBox{  
+    -webkit-appearance: none; 
+    -moz-appearance: none; 
+    -ms-appearance: none; 
+    -o-appearance: none; 
+    appearance: none;   
+    border: 1px solid transparent;    
+    outline-color: transparent; 
+    outline-width: 0;
+    outline-style: none;   
+    box-shadow: none;
 }
 
-.ORBIS\.ColorfulOptionset :focus {
-    outline: none;
+.ORBIS\.ColorfulOptionset .ComboBox .option{          
+    text-align: left;
+    line-height: 30px;    
 }
 
-/*
-.ORBIS\.ColorfulOptionset .ComboBoxMain  div {
-    border-color: transparent;
-}
+.ORBIS_ColorfulOptionset_item{    
+    display: inline-flex;   
+    line-height:14px;   
+} 
 
-.ORBIS\.ColorfulOptionset .ComboBox >div > span {
-    border-color: transparent;
-}
-
-.ORBIS\.ColorfulOptionset .ComboBox >div > span > i {
-    color: transparent;
-}
-*/
-
-
-
-.ORBIS\.ColorfulOptionset .option {
-    float:left;
-    display: flex;
-}
-
-.ORBIS\.ColorfulOptionset .option > span
-{
-   white-space: nowrap;
-   overflow: hidden;
-   text-overflow: ellipsis;
-   min-width: 0;
-}
-
-.ORBIS\.ColorfulOptionset .colorIcon {
-    margin-right: 8px;
-    flex: 1;
-}
-
-
-
-.ORBIS\.ColorfulOptionset .ComboBoxMain{    
-    background: transparent;  
-    color: #000000; 
-    font-family: 'SegoeUI', 'Segoe UI'; 
-    font-size: 1.0rem;         
-}
-
-.ORBIS\.ColorfulOptionset .ComboBox{
-   border-color: transparent!important;
-    border-style: none; 
-    border: 1px solid #ffffff;          
-    font-weight: 600; 
-}
-
-
-.ORBIS\.ColorfulOptionset .ComboBox i{  
-    color:transparent;
-}
-
-
-
-.ORBIS\.ColorfulOptionset .ComboBoxFocused{  
-    border: 1px solid #a9a9a9;  
-    font-weight:400;    
-}
-
-.ORBIS\.ColorfulOptionset .ComboBoxFocused i {  
-    color: #000000; 
-}
-
-.ORBIS\.ColorfulOptionset .ComboBoxClicked{  
-    border: 1px solid #a9a9a9; 
-    font-weight:400;      
-}
-
-.ORBIS\.ColorfulOptionset .ComboBoxClicked i {  
-    color: #000000; 
-}
