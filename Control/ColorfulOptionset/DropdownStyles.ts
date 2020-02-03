@@ -71,8 +71,23 @@ export const dropdownStyles = (props: IDropdownStyleProps):Partial<IDropdownStyl
             boxShadow: "none"
           }
         }
-
-      }],   
+      }],
+      dropdownItem: [{
+        display: "inline-flex",
+        selectors: {
+          ":hover": {
+            color: "black"
+          }
+        }
+      }],
+      dropdownItemSelected: [{
+        display: "inline-flex",
+        selectors: {
+          ":hover": {
+            color: "black"
+          }
+        }
+      }],
       caretDown :[{
         color: props.isOpen===true? colorFocus : "transparent"        
       }],
