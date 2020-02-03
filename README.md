@@ -5,11 +5,11 @@ Note: Right now it only support single optionset controls.
 
 ## Control Preview
 ![preview](./readmeContent/ColorfulOptionset.gif)
-On the left side you see two instanced of the control (the second is disabled). On the right side you can see the standard OptionSet control.
+On the left side you see two instances of the control (the second is disabled). On the right side you can see the standard OptionSet control.
 
 ## Install
 
-1. Download the latest version of the solution from [releases](./releases).
+1. Download the latest version of the solution from [releases](/releases).
 2. Import the solution to your Dynamics365CE instance
 
 ## Registering the control
