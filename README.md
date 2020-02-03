@@ -9,7 +9,7 @@ On the left side you see two instances of the control (the second is disabled). 
 
 ## Install
 
-1. Download the latest version of the solution from [releases](/releases).
+1. Download the latest version of the solution from [releases](https://github.com/ORBISAG/ORBIS.PCF.ColorfulOptionset/releases).
 2. Import the solution to your Dynamics365CE instance
 
 ## Registering the control
