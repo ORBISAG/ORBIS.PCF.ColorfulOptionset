@@ -1,6 +1,6 @@
 
-import { createTheme} from "office-ui-fabric-react/lib/index";
-import { IDropdownStyles, IDropdownStyleProps} from 'office-ui-fabric-react/lib/Dropdown';
+import { createTheme} from "@fluentui/react/lib/Theme";
+import { IDropdownStyles, IDropdownStyleProps} from "@fluentui/react/lib/Dropdown";
 
 export const myTheme = createTheme({
     palette: {

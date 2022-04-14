@@ -1,5 +1,5 @@
 import {IInputs, IOutputs} from "./generated/ManifestTypes";
-import { IDropdownOption } from "office-ui-fabric-react/lib/Dropdown";
+import { IDropdownOption } from  "@fluentui/react/lib/Dropdown";
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import {ColorfulOptionsetControl} from "./ColorfulOptionsetControl";

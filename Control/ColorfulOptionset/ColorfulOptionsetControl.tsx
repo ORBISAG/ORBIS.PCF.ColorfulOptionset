@@ -1,9 +1,9 @@
 import * as React from 'react';
 
-import {Dropdown, IDropdownOption} from 'office-ui-fabric-react/lib/Dropdown';
-import {initializeIcons} from "office-ui-fabric-react/lib/Icons"
-import { Icon} from "office-ui-fabric-react/lib/Icon";
-import {ISelectableOption} from "office-ui-fabric-react/lib/SelectableOption";
+import {Dropdown, IDropdownOption} from "@fluentui/react/lib/Dropdown"
+import {initializeIcons} from "@fluentui/react/lib/Icons"
+import { Icon} from "@fluentui/react/lib/Icon";
+import {ISelectableOption} from "@fluentui/react/lib/SelectableOption";
 import {dropdownStyles, myTheme} from "./DropdownStyles";
 
 
