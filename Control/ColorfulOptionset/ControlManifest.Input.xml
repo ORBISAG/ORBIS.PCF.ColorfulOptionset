@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <manifest>
-  <control namespace="ORBIS" constructor="ColorfulOptionset" version="0.0.6" display-name-key="ORBIS.ColorfulOptionset" description-key="ColorfulOptionset description" control-type="standard">
+  <control namespace="ORBIS" constructor="ColorfulOptionset" version="0.0.6" display-name-key="ORBIS.ColorfulOptionset" description-key="ColorfulOptionset description" control-type="virtual">
     <property name="optionsInput" display-name-key="Property_Display_Key" description-key="Property_Desc_Key" of-type="OptionSet" usage="bound" required="true" />     
     <resources>      
       <code path="index.ts" order="1"/>      
       <css path="css/ColorfulOptionset.css" order="1" />
-      <!--platform-library name="React" version="16.8.6" />
-      <platform-library name="Fluent" version="8.29.0" /-->
+      <platform-library name="React" version="16.8.6" />
+      <platform-library name="Fluent" version="8.29.0" />
     </resources>   
   </control>
 </manifest>

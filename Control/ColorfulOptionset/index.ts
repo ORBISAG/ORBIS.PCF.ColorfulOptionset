@@ -33,7 +33,7 @@ const DEFAULT_OPTIONS : ComponentFramework.PropertyHelper.OptionMetadata[] = [{
 }
 ];
 
-export class ColorfulOptionset implements ComponentFramework.StandardControl<IInputs, IOutputs> {
+export class ColorfulOptionset implements ComponentFramework.ReactControl<IInputs, IOutputs> {
 
 	private allOptions : ComponentFramework.PropertyHelper.OptionMetadata[];
 	private dropdownOptions : IDropdownOption[];
@@ -61,7 +61,7 @@ export class ColorfulOptionset implements ComponentFramework.StandardControl<IIn
 	public init(context: ComponentFramework.Context<IInputs>, notifyOutputChanged: () => void, state: ComponentFramework.Dictionary, container:HTMLDivElement)
 	{		
 		
-		
+		console.log("using virtual control in ColorfulOptionset");
 		let opts =  context.parameters.optionsInput.attributes!.Options;
 		//todo
 		/*if(opts?.length === 3){
@@ -73,11 +73,10 @@ export class ColorfulOptionset implements ComponentFramework.StandardControl<IIn
 
 		this.container = container;
 		this.notifyOutputChanged = notifyOutputChanged;
-
-		this.renderControl(context);
+		
 	}
 
-	private renderControl(context: ComponentFramework.Context<IInputs>) : void {
+	private renderControl(context: ComponentFramework.Context<IInputs>) : React.ReactElement {
 
 		
 		this.isDisabled = context.mode.isControlDisabled;
@@ -92,7 +91,7 @@ export class ColorfulOptionset implements ComponentFramework.StandardControl<IIn
 			isDisabled : this.isDisabled, 
 			defaultValue : this.defaultValue		
 		};			
-		ReactDOM.render(React.createElement(ColorfulOptionsetControl, params ) , this.container);
+		return React.createElement(ColorfulOptionsetControl, params );
 	
 	}
 	
@@ -101,11 +100,9 @@ export class ColorfulOptionset implements ComponentFramework.StandardControl<IIn
 	 * Called when any value in the property bag has changed. This includes field values, data-sets, global values such as container height and width, offline status, control metadata values such as label, visible, etc.
 	 * @param context The entire property bag available to control via Context Object; It contains values as set up by the customizer mapped to names defined in the manifest, as well as utility functions
 	 */
-	public updateView(context: ComponentFramework.Context<IInputs>): void
+	public updateView(context: ComponentFramework.Context<IInputs>): React.ReactElement
 	{
-		
-
-		this.renderControl(context);
+		return this.renderControl(context);
 	}
 
 	/** 
@@ -124,7 +121,6 @@ export class ColorfulOptionset implements ComponentFramework.StandardControl<IIn
 	 * i.e. cancelling any pending remote calls, removing listeners, etc.
 	 */
 	public destroy(): void
-	{
-		ReactDOM.unmountComponentAtNode(this.container);
+	{		
 	}
 }
