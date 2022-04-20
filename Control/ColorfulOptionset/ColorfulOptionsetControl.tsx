@@ -15,7 +15,7 @@ export interface ISetupSchema{
 }
 
 export interface IConfig{
-  jsonConfig: ISetupSchema | undefined, 
+  jsonConfig: ISetupSchema | undefined;
   defaultIconName : string;
 }
 
@@ -45,6 +45,7 @@ interface IColorfulOptionsetProperties {
 
 //export default class ColorfulOptionsetControl extends React.Component<IColorfulOptionsetProperties, {}> {            
 export const ColorfulOptionsetControl = ({options, selectedKey, onChange, isDisabled, defaultValue, config}:IColorfulOptionsetProperties): JSX.Element =>{
+  
   const _onSelectedChanged = (event: any, option?: IDropdownOption) => {       
     const val = (option?.key == null || option?.key===-1) ? null : option?.key as number;   
     onChange(val);           
