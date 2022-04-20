@@ -26,6 +26,51 @@ This control is designed for Optionset attribute types. In order to define the c
 ![colors](./readmeContent/CustomizingColors.png)
 
 
+## Icons
+
+To customize the icons, you can choose the icons from the [FluentUI Icons](https://uifabricicons.azurewebsites.net/)
+
+Just define it for the icon parameter. If not, the default will be the "dot".
+![customizing](./readmeContent/CustomizingIcon.png)
+
+
+![icons](./readmeContent/Icons%20and%20Sort.png)
+
+### Different icons
+If you need different icons for different options, you can specify a JSON for the icon parameter. The structure will be {value: {icon, color}}
+Here is an example
+```javascript
+{"434350002": {"icon": "Sad", "color": "#ff0000"}, 
+"434350001": {                "color": "orange"}, 
+"434350000":{"icon":"Emoji2"}}
+```
+
+- If the "color" is not specified, the color from the Options Metadata will be taken.
+- If the "icon" is missing, the "dot" will be shown
+- You can specify both "icon" and "color" for each option
+- You cal leave options not being defined. In that case the fallbacks will be applied.
+
+It will look something like this:
+
+![configJSON](./readmeContent/CustomizingIconWith%20JSON.png)
+Here is the result of the above configuration (yellow has no icon, so it takes the default):
+![IconsAndColos](./readmeContent/Icons%20and%20Colors.png)
+
+
+# Sort by 
+
+Usually the OptionSet (Choice) will list the options in the order defined in the customizing. That will be the default also for ColorfulOptionSet component.
+But if you would like to have it sorted by "text", so every user is getting the options alphabetically sorted (doesn't matter which language she/he uses), you can define it by choosing: "Sort by" "Text".
+
+![sortBy](./readmeContent/CustomizingSortBy.png)
+
+Here is the standard sorting in a out of the box OptionSet control(by Value):
+![standrad sorting](./readmeContent//Stadard%20Sort.png)
+
+Here is the "Text" sorting in ColorfulOptionSet
+![text sorting](./readmeContent/Icons%20and%20Sort.png)
+
+
 ## License
 
 [MIT](./LICENSE)
