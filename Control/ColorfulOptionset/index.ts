@@ -2,7 +2,7 @@ import {IInputs, IOutputs} from "./generated/ManifestTypes";
 import { IDropdownOption } from  "@fluentui/react/lib/Dropdown";
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import {ColorfulOptionsetControl} from "./ColorfulOptionsetControl";
+import {ColorfulOptionsetControl, IConfig, ISetupSchema} from "./ColorfulOptionsetControl";
 
 
 
@@ -33,6 +33,8 @@ const DEFAULT_OPTIONS : ComponentFramework.PropertyHelper.OptionMetadata[] = [{
 }
 ];
 
+
+
 export class ColorfulOptionset implements ComponentFramework.ReactControl<IInputs, IOutputs> {
 
 	private allOptions : ComponentFramework.PropertyHelper.OptionMetadata[];
@@ -44,10 +46,22 @@ export class ColorfulOptionset implements ComponentFramework.ReactControl<IInput
 	private currentValue: number | null;
 	private notifyOutputChanged: () => void;
 
+	private config : IConfig | undefined;
+
 	
 	constructor()
 	{
 
+	}
+
+
+	private parseIconConfig(defaultIcon : string, iconConfig ?: string): IConfig{
+		const isJSON = iconConfig && iconConfig.includes("{");
+		this.config = { 
+			jsonConfig : isJSON === true ? JSON.parse(iconConfig as string) as ISetupSchema : undefined,
+			defaultIconName : (!isJSON ? iconConfig : defaultIcon) ?? defaultIcon
+		}
+		return this.config;
 	}
 
 	/**
@@ -89,7 +103,8 @@ export class ColorfulOptionset implements ComponentFramework.ReactControl<IInput
 				this.notifyOutputChanged();
 			}, 
 			isDisabled : this.isDisabled, 
-			defaultValue : this.defaultValue		
+			defaultValue : this.defaultValue, 
+			config: this.config ?? this.parseIconConfig("CircleShapeSolid", context.parameters.icon?.raw ?? undefined)		
 		};			
 		return React.createElement(ColorfulOptionsetControl, params );
 	

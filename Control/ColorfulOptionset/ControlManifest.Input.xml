@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <manifest>
   <control namespace="ORBIS" constructor="ColorfulOptionset" version="0.0.6" display-name-key="ORBIS.ColorfulOptionset" description-key="ColorfulOptionset description" control-type="virtual">
-    <property name="optionsInput" display-name-key="Property_Display_Key" description-key="Property_Desc_Key" of-type="OptionSet" usage="bound" required="true" />     
+    <property name="optionsInput" display-name-key="OptionSet" description-key="OptionSet" of-type="OptionSet" usage="bound" required="true" />  
+    <property name="icon" display-name-key="Icon" description-key="Icon" of-type="SingleLine.Text" usage="input" required="false" />   
+    <!--property name="sortBy" display-name-key="Sort by" description-key="Sort by" of-type="Enum" usage="input" required="true" >      
+      <value name="VALUE" display-name-key="Value" description-key="Sort by the value of the options" default="true">VALUE</value>
+      <value name="TEXT" display-name-key="Text" description-key="Sort by the text of the options, corresponding to the user language">TEXT</value>
+    </property-->
     <resources>      
       <code path="index.ts" order="1"/>      
       <css path="css/ColorfulOptionset.css" order="1" />

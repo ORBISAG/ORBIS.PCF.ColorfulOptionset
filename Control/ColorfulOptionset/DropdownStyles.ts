@@ -57,11 +57,16 @@ export const dropdownStyles = (props: IDropdownStyleProps):Partial<IDropdownStyl
         }
       }],   
       dropdown: [{
+
+        appearance: "none",
         outline: "none",
         border: "1px solid transparent",
         outlineColor: "transparent",
+        outlineWidth: "0",
+        outlineStyle : "none",
         outlineOffset: "0",
         boxShadow: "none",
+        width: "100%",
         selectors:{
           ":focus:after": {
             outline: "none",
