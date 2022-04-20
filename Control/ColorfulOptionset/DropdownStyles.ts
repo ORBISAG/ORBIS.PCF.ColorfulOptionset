@@ -55,7 +55,10 @@ export const dropdownStyles = (props: IDropdownStyleProps):Partial<IDropdownStyl
             boxShadow: "none"
           }                
         }
-      }],   
+      }],        
+      root: {
+        width: "100%"
+      },
       dropdown: [{
 
         appearance: "none",
