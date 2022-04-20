@@ -1,5 +1,5 @@
 
-.ORBIS\.ColorfulOptionset .ComboBox{  
+/*.ORBIS\.ColorfulOptionset .ComboBox{  
     -webkit-appearance: none; 
     -moz-appearance: none; 
     -ms-appearance: none; 
@@ -11,7 +11,7 @@
     outline-style: none;   
     box-shadow: none;
     width:100%;
-}
+}*/
 
 .ORBIS\.ColorfulOptionset .ComboBox .option{          
     text-align: left;
