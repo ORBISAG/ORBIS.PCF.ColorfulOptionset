@@ -70,6 +70,8 @@ Here is the standard sorting in a out of the box OptionSet control(by Value):
 Here is the "Text" sorting in ColorfulOptionSet
 ![text sorting](./readmeContent/Icons%20and%20Sort.png)
 
+Read more detail on my [blog post](https://dianabirkelbach.wordpress.com/2022/04/24/colorful-optionset-pcf-virtual-and-improved/)
+
 
 ## License
 
