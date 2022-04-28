@@ -55,11 +55,12 @@ export class ColorfulOptionset implements ComponentFramework.ReactControl<IInput
 	}
 
 
-	private parseIconConfig(defaultIcon : string,  iconConfig ?: string): IConfig{
+	private parseIconConfig(defaultIcon : string,  iconConfig ?: string, sortBy ?: "TEXT"|"VALUE"): IConfig{
 		const isJSON = iconConfig && iconConfig.includes("{");
 		this.config = { 
 			jsonConfig : isJSON === true ? JSON.parse(iconConfig as string) as ISetupSchema : undefined,
-			defaultIconName : (!isJSON ? iconConfig : defaultIcon) ?? defaultIcon		
+			defaultIconName : (!isJSON ? iconConfig : defaultIcon) ?? defaultIcon, 
+			sortBy: sortBy ?? "VALUE"	
 		}
 		return this.config;
 	}
@@ -84,18 +85,12 @@ export class ColorfulOptionset implements ComponentFramework.ReactControl<IInput
 	}
 
 	private renderControl(context: ComponentFramework.Context<IInputs>) : React.ReactElement {
-
-		this.allOptions = [{Label: "--Select--", Value: -1, Color: "transparent"}, ...context.parameters.optionsInput.attributes!.Options];	
-		this.dropdownOptions = this.allOptions
-			.map((option : ComponentFramework.PropertyHelper.OptionMetadata ) =>  ({key: option.Value, text : option.Label, data: {color: option.Color}}) )
-		if(context.parameters.sortBy?.raw==="TEXT"){
-			this.dropdownOptions = this.dropdownOptions.sort((a, b) =>a.text.localeCompare(b.text));
-		}			
-
+		console.log("entered renderControl in index.ts")
+	
 		this.isDisabled = context.mode.isControlDisabled;
 		this.currentValue = context.parameters.optionsInput.raw;	
 		let params = {
-			options: this.dropdownOptions,
+			rawOptions: context.parameters.optionsInput.attributes!.Options,
 			selectedKey: this.currentValue, 			
 			onChange: (newValue: number |null) => {
 				this.currentValue = newValue;
@@ -103,7 +98,7 @@ export class ColorfulOptionset implements ComponentFramework.ReactControl<IInput
 			}, 
 			isDisabled : this.isDisabled, 
 			defaultValue : this.defaultValue, 
-			config: this.config ?? this.parseIconConfig("CircleShapeSolid",  context.parameters.icon?.raw ?? undefined)		
+			config: this.config ?? this.parseIconConfig("CircleShapeSolid",  context.parameters.icon?.raw ?? undefined, context.parameters.sortBy.raw)		
 		};			
 		return React.createElement(ColorfulOptionsetControl, params );
 	

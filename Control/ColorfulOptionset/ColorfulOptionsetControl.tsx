@@ -17,6 +17,7 @@ export interface ISetupSchema{
 export interface IConfig{
   jsonConfig: ISetupSchema | undefined;
   defaultIconName : string;
+  sortBy: "TEXT" | "VALUE";
 }
 
 /*
@@ -29,7 +30,7 @@ initializeIcons();
 
 
 interface IColorfulOptionsetProperties {
-    options: IDropdownOption[];
+    rawOptions: ComponentFramework.PropertyHelper.OptionMetadata[];
     selectedKey: number | null;          
     onChange: (value: number|null) => void
     isDisabled : boolean;
@@ -44,8 +45,14 @@ interface IColorfulOptionsetProperties {
 
 
 //export default class ColorfulOptionsetControl extends React.Component<IColorfulOptionsetProperties, {}> {            
-export const ColorfulOptionsetControl = ({options, selectedKey, onChange, isDisabled, defaultValue, config}:IColorfulOptionsetProperties): JSX.Element =>{
-  
+export const ColorfulOptionsetControl = React.memo(({rawOptions, selectedKey, onChange, isDisabled, defaultValue, config}:IColorfulOptionsetProperties): JSX.Element =>{  
+  console.log("Entered control");
+  const allOptions = [{Label: "--Select--", Value: -1, Color: "transparent"}, ...rawOptions];	
+  let options = allOptions.map((option : ComponentFramework.PropertyHelper.OptionMetadata ) =>  ({key: option.Value, text : option.Label, data: {color: option.Color}}) )
+  if(config.sortBy==="TEXT"){  
+    options = options.sort((a, b) =>a.text.localeCompare(b.text));
+  }			
+
   const _onSelectedChanged = (event: any, option?: IDropdownOption) => {       
     const val = (option?.key == null || option?.key===-1) ? null : option?.key as number;   
     onChange(val);           
@@ -89,7 +96,13 @@ const _onRenderTitle = (options: IDropdownOption[] | undefined): JSX.Element => 
         />
     );
 
-}
+}, (prev, next)=> {  
+  return prev.rawOptions === next.rawOptions
+        && prev.selectedKey === next.selectedKey 
+        && prev.isDisabled===next.isDisabled 
+        && prev.defaultValue===next.defaultValue 
+        && prev.config===next.config;  
+})
    
    
 
