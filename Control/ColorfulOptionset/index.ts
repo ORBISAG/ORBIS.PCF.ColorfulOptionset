@@ -84,18 +84,20 @@ export class ColorfulOptionset implements ComponentFramework.ReactControl<IInput
 		
 	}
 
+	private onChange = (newValue: number |null) => {
+		this.currentValue = newValue;
+		this.notifyOutputChanged();
+	};
+
 	private renderControl(context: ComponentFramework.Context<IInputs>) : React.ReactElement {
-		console.log("entered renderControl in index.ts")
+		console.log("entered renderControl in index.ts", context.updatedProperties);
 	
 		this.isDisabled = context.mode.isControlDisabled;
 		this.currentValue = context.parameters.optionsInput.raw;	
 		let params = {
 			rawOptions: context.parameters.optionsInput.attributes!.Options,
 			selectedKey: this.currentValue, 			
-			onChange: (newValue: number |null) => {
-				this.currentValue = newValue;
-				this.notifyOutputChanged();
-			}, 
+			onChange: this.onChange, 
 			isDisabled : this.isDisabled, 
 			defaultValue : this.defaultValue, 
 			config: this.config ?? this.parseIconConfig("CircleShapeSolid",  context.parameters.icon?.raw ?? undefined, context.parameters.sortBy.raw)		

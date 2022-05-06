@@ -45,8 +45,9 @@ interface IColorfulOptionsetProperties {
 
 
 //export default class ColorfulOptionsetControl extends React.Component<IColorfulOptionsetProperties, {}> {            
-export const ColorfulOptionsetControl = React.memo(({rawOptions, selectedKey, onChange, isDisabled, defaultValue, config}:IColorfulOptionsetProperties): JSX.Element =>{  
-  console.log("Entered control");
+//export const ColorfulOptionsetControl = ({rawOptions, selectedKey, onChange, isDisabled, defaultValue, config}:IColorfulOptionsetProperties): JSX.Element =>{    
+export const ColorfulOptionsetControl = React.memo(({rawOptions, selectedKey, onChange, isDisabled, defaultValue, config}:IColorfulOptionsetProperties): JSX.Element =>{    
+  console.log("%cEntered control", "color:red");
   const allOptions = [{Label: "--Select--", Value: -1, Color: "transparent"}, ...rawOptions];	
   let options = allOptions.map((option : ComponentFramework.PropertyHelper.OptionMetadata ) =>  ({key: option.Value, text : option.Label, data: {color: option.Color}}) )
   if(config.sortBy==="TEXT"){  
@@ -96,14 +97,14 @@ const _onRenderTitle = (options: IDropdownOption[] | undefined): JSX.Element => 
         />
     );
 
-}, (prev, next)=> {  
+});
+/*, (prev, next)=> {  
   return prev.rawOptions === next.rawOptions
         && prev.selectedKey === next.selectedKey 
         && prev.isDisabled===next.isDisabled 
         && prev.defaultValue===next.defaultValue 
         && prev.config===next.config;  
-})
-   
+})   */
    
 
 

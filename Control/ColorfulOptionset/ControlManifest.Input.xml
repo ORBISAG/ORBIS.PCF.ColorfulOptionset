@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <manifest>
-  <control namespace="ORBIS" constructor="ColorfulOptionset" version="0.0.7" display-name-key="ORBIS.ColorfulOptionset" description-key="ColorfulOptionset description" control-type="virtual">
+  <control namespace="ORBIS" constructor="ColorfulOptionset" version="0.0.8" display-name-key="ORBIS.ColorfulOptionset" description-key="ColorfulOptionset description" control-type="virtual">
     <property name="optionsInput" display-name-key="OptionSet" description-key="OptionSet" of-type="OptionSet" usage="bound" required="true" />  
     <property name="icon" display-name-key="Icon" description-key="Icon" of-type="SingleLine.Text" usage="input" required="false" />   
     <property name="sortBy" display-name-key="Sort by" description-key="Sort by" of-type="Enum" usage="input" required="true" >      
