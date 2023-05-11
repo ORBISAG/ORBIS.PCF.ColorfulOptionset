@@ -9,7 +9,7 @@
     </property>
     <resources>      
       <code path="index.ts" order="1"/>      
-      <css path="css/ColorfulOptionset.css" order="1" />
+      <css path="CSS/ColorfulOptionset.css" order="1" />
       <platform-library name="React" version="16.8.6" />
       <platform-library name="Fluent" version="8.29.0" />
     </resources>   
