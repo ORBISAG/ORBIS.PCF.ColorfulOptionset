@@ -15,6 +15,9 @@
     <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
   </PropertyGroup>
 
+<PropertyGroup>
+    <SolutionPackageType>Both</SolutionPackageType>
+  </PropertyGroup>
   <!-- Solution Packager overrides, un-comment to use: SolutionPackagerType (Managed, Unmanaged, Both)
   <PropertyGroup>
     <SolutionPackageType>Managed</SolutionPackageType>
